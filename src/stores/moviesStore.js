@@ -10,16 +10,21 @@ export class MoviesStore {
     return this.moviesRegistry.values();
   };
 
+  clear() {
+    this.moviesRegistry.clear();
+  }
+
   @action loadMovies() {
     this.isLoading = true;
     return fetch('https://ghibliapi.herokuapp.com/films').then((res) => {
       return res.json();
-    }).then((resp) => {
-      action((movies) => {
-        this.moviesRegistry.set(movies, movies);
-        return movies;
+    }).then(action((movies) => {
+      // console.log(movies);
+      movies.forEach((movie) => {
+        this.moviesRegistry.set(movie.id, movie);
       });
-    }).finally(action(() => { this.loading = false; }));
+      return movies;
+    })).finally(action(() => { this.loading = false; }));
   }
 
 }

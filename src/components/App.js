@@ -1,22 +1,25 @@
 import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import { observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 
 import Header from './Header';
 import MoviesList from './MoviesList';
+import styles from './styles/app.css';
 
 @withRouter
 @observer
-export default class App extends React.Component {
+class App extends React.Component {
 
   render() {
     return (
       <div>
         <Header />
         <Switch>
-          <Route path="/=" component={MoviesList} />
+          <Route path="/" component={MoviesList} />
         </Switch>
       </div>
     );
   }
 }
+
+export default App;

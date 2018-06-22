@@ -8,9 +8,12 @@ import App from './components/App';
 
 import moviesStore from './stores/moviesStore';
 
+// add stores
 const stores = {
   moviesStore
 };
+
+console.log(stores);
 
 // For easier debugging
 window._____APP_STATE_____ = stores;
